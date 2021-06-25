@@ -9,12 +9,13 @@ export class GetKidsController {
 
         try {
             // const kidsList = await
-                GetKidsService.execute((err, result) => {
-               console.log(result);
-               return res.status(200).json({
-                 data: result,
-               }); 
-           });
+            const getKidsService = new GetKidsService();
+                getKidsService.execute((err, result) => {
+                  console.log(result);
+                  return res.status(200).json({
+                    data: result,
+                  });
+                });
 
            
         } catch {
