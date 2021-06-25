@@ -2,7 +2,7 @@ import { KidDTO } from '../CreateKid/models/CreateKidModel';
 import * as kidsRepository from '../repositories/KidRepository';
 // import {KidRepository} from "../repositories/KidRepository";
 export class GetKidsService {
-  static async execute(callback: Function){
+   async execute(callback: Function){
     // let kidsRepository = new KidRepository();
   //  const result = await kidsRepository.getKids();
   //   console.log(result);
