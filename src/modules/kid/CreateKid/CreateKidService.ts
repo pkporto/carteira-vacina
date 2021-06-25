@@ -1,11 +1,12 @@
-import * as kidsRepository from '../domain/repositories/CreateKidRepository';
+import * as kidsRepository from '../repositories/KidRepository';
 import { KidDTO } from "../CreateKid/models/CreateKidModel";
 export class CreateKidService {
- static async execute(data: KidDTO) {
+ static async execute(data: KidDTO):Promise<string> {
       kidsRepository.createKid(data, (err, result) => {
           if (err) throw err;
 
-          console.log(result);
-    });
+      });
+        return "Cadastro efetuado com sucesso!";
+   
   }
 }

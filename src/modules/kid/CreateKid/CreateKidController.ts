@@ -8,7 +8,11 @@ export class CreateKidController {
         const { name, cpf } = req.body;
 
         try {
-            await CreateKidService.execute({ name, cpf });
+            const result = await CreateKidService.execute({ name, cpf });
+
+            return res.status(201).json({
+                message: result
+            })
         } catch {
             
         }
