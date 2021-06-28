@@ -1,5 +1,5 @@
 export interface KidDTO {
     id?: number,
-    name: string,
+    nome: string,
     cpf: string
 }

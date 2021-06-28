@@ -1,15 +1,15 @@
 import { listenerCount } from "events";
 import { connect } from "../../../shared/db/db";
-import { KidDTO } from '../CreateKid/models/CreateKidModel';
+import { VaccineDTO } from '../CreateVaccine/models/CreateVaccineModel';
 
-export const createKid = async (kid: KidDTO, callback: Function) => {
+export const createVaccine = async (vaccine: VaccineDTO, callback: Function) => {
     const conn = await connect();
 
     conn.getConnection(function (err, connection) {
         if (err) throw err;
 
-        connection.query('INSERT INTO crianca(nome, cpf) VALUES( ?, ?)',
-            [kid.nome, kid.cpf],
+        connection.query(`INSERT INTO vacina(nome, descricao, fabricante) VALUES( '${vaccine.nome}', '${vaccine.descricao}', '${vaccine.fabricante}')`,
+            [],
             (err, result) => {
             connection.release();
             if (err) throw err;
@@ -18,13 +18,13 @@ export const createKid = async (kid: KidDTO, callback: Function) => {
     });
 }
 
-export const getKids = async (callback: Function) =>  {
+export const getVaccines = async (callback: Function) =>  {
     const conn = await connect();
 
     conn.getConnection(function (err, connection) {
         if (err) throw err;
 
-        connection.query('SELECT * FROM crianca', [], (err, result) => {
+        connection.query('SELECT * FROM vacina', [], (err, result) => {
             connection.release();
             if (err) throw err;
             return callback(null,result);
@@ -42,7 +42,7 @@ export const getKids = async (callback: Function) =>  {
 
 
 // export class KidRepository {
-//   async createKid(kid: KidDTO, callback: Function) {
+//   async createVaccine(vaccine: KidDTO, callback: Function) {
 //     const conn = await connect();
 
 //     conn.getConnection(function (err, connection) {
@@ -50,7 +50,7 @@ export const getKids = async (callback: Function) =>  {
 
 //       connection.query(
 //         "INSERT INTO crianca(nome, cpf) VALUES( ?, ?)",
-//         [kid.name, kid.cpf],
+//         [vaccine.name, vaccine.cpf],
 //         (err, result) => {
 //           connection.release();
 //           if (err) throw err;
@@ -60,7 +60,7 @@ export const getKids = async (callback: Function) =>  {
 //     });
 //   }
 
-//     async getKids(): Promise<KidDTO[]> {
+//     async getVaccines(): Promise<KidDTO[]> {
 //         let list: KidDTO[] = [];
       
 //     const conn = await connect();

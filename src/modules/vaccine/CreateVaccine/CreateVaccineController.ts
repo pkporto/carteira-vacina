@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
-import { CreateKidService } from './CreateKidService';
+import { CreateVaccineService } from './CreateVaccineService';
 
 
-export class CreateKidController {
+export class CreateVaccineController {
 
     public async handle(req: Request, res: Response): Promise<Response>{
-        const { nome, cpf } = req.body;
+        const { nome, fabricante, descricao } = req.body;
 
         try {
-            const result = await CreateKidService.execute({ nome, cpf });
+            const result = await CreateVaccineService.execute({ nome, fabricante, descricao });
 
             return res.status(201).json({
                 message: result
