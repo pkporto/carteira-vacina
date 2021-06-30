@@ -10,7 +10,8 @@ export class GetKidsController {
         try {
             // const kidsList = await
             const getKidsService = new GetKidsService();
-                getKidsService.execute((err, result) => {
+          getKidsService.execute((err, result) => {
+            if (err) throw err;
                   console.log(result);
                   return res.status(200).json({
                     data: result,

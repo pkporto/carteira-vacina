@@ -18,17 +18,16 @@ export const createVaccination = async (vaccination: VaccinationDTO, callback: F
     });
 }
 
-export const getVaccinations = async (callback: Function) =>  {
+export const getVaccinations = async (id, callback: Function) =>  {
     const conn = await connect();
 
     conn.getConnection(function (err, connection) {
         if (err) throw err;
 
-        connection.query('SELECT * FROM vacina', [], (err, result) => {
-            connection.release();
-            if (err) throw err;
-            return callback(null,result);
-            
+        connection.query("SELECT * FROM vacinacao where id_crianca = ?", [id], (err, result) => {
+          connection.release();
+          if (err) throw err;
+          return callback(null, result);
         });
 
 

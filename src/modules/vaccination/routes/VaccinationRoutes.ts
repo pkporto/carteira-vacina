@@ -16,6 +16,6 @@ vacRoutes.get("/", (req: Request, res: Response) => {
 
 vacRoutes.post("/addVaccination", createVacController.handle);
 
-vacRoutes.get("/getVaccination", getVacController.handle);
+vacRoutes.get("/getVaccination/:id", getVacController.handle);
 
 export default vacRoutes;
