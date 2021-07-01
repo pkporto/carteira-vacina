@@ -1,21 +1,21 @@
 import { Request, Response } from 'express';
 import kidsRoutes from '../routes/kidsRoutes';
-import { GetKidService } from './GetKidService';
+import { DeleteKidService } from './DeleteKidService';
 
 
-export class GetKidController {
+export class DeleteKidController {
  
 
   public async handle(req: Request, res: Response): Promise<Response> {
-    const getKidService = new GetKidService();
+    const deleteKidService = new DeleteKidService();
     const { id } = req.params;
     try {
       // const kidsList = await
-     getKidService.execute(id, (err, result) => {
+     deleteKidService.execute(id, (err, result) => {
         if (err) throw err;
         console.log(result);
         return res.status(200).json({
-          data: result,
+          data: 'Deletado com sucesso!',
         });
       });
     } catch {}

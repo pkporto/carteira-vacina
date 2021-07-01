@@ -32,6 +32,24 @@ export const getKid = async (id, callback: Function) => {
   });
 };
 
+export const deleteKid = async (id, callback: Function) => {
+  const conn = await connect();
+
+  conn.getConnection(function (err, connection) {
+    if (err) throw err;
+
+    connection.query(
+      "DELETE FROM crianca WHERE id = ?",
+      [id],
+      (err, result) => {
+        connection.release();
+        if (err) throw err;
+        return callback(null);
+      }
+    );
+  });
+};
+
 export const getKids = async (callback: Function) =>  {
     const conn = await connect();
 
@@ -51,44 +69,3 @@ export const getKids = async (callback: Function) =>  {
 
 
 
-
-
-
-
-// export class KidRepository {
-//   async createKid(kid: KidDTO, callback: Function) {
-//     const conn = await connect();
-
-//     conn.getConnection(function (err, connection) {
-//       if (err) throw err;
-
-//       connection.query(
-//         "INSERT INTO crianca(nome, cpf) VALUES( ?, ?)",
-//         [kid.name, kid.cpf],
-//         (err, result) => {
-//           connection.release();
-//           if (err) throw err;
-//           return callback(null, result);
-//         }
-//       );
-//     });
-//   }
-
-//     async getKids(): Promise<KidDTO[]> {
-//         let list: KidDTO[] = [];
-      
-//     const conn = await connect();
-
-//     conn.getConnection(function (err, connection) {
-//         if (err) throw err;
-//       connection.query("SELECT * FROM crianca", [], (err, result) => {
-//         connection.release();
-//           if (err) throw err;
-//           console.log(list);
-          
-//           return result;
-//       });
-//     });
-        
-//   }
-// }
