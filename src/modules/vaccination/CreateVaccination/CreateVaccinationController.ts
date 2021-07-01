@@ -6,7 +6,7 @@ export class CreateVaccinationController {
 
     public async handle(req: Request, res: Response): Promise<Response>{
         const { lote, enf, data_vac, id_vacina, id_crianca} = req.body;
-
+        console.log(req.body);
         try {
             const result = await CreateVaccinationService.execute({ lote, enf, data_vac, id_vacina, id_crianca});
 
