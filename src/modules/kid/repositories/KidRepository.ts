@@ -18,6 +18,20 @@ export const createKid = async (kid: KidDTO, callback: Function) => {
     });
 }
 
+export const getKid = async (id, callback: Function) => {
+  const conn = await connect();
+
+  conn.getConnection(function (err, connection) {
+    if (err) throw err;
+
+    connection.query("SELECT * FROM crianca WHERE id = ?", [id], (err, result) => {
+        connection.release();
+      if (err) throw err;
+      return callback(null, result);
+    });
+  });
+};
+
 export const getKids = async (callback: Function) =>  {
     const conn = await connect();
 
