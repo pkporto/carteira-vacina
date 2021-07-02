@@ -26,7 +26,6 @@ export const getVaccinations = async (id, callback: Function) =>  {
 
         connection.query("SELECT * FROM vacinacao where id_crianca = ?", [id], (err, result) => {
             connection.release();
-            connection.end();
           if (err) throw err;
           return callback(null, result);
         });
