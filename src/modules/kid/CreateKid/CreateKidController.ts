@@ -11,6 +11,7 @@ export class CreateKidController {
             const result = await CreateKidService.execute({ nome, cpf });
 
             return res.status(201).json({
+                status: 201,
                 message: result
             })
         } catch {

@@ -12,9 +12,15 @@ export class DeleteKidController {
     try {
       // const kidsList = await
      deleteKidService.execute(id, (err, result) => {
-        if (err) throw err;
+       if (err) {
+         return res.status(400).json({
+           status: 400,
+           data: "Erro ao deletar.",
+         }); 
+        }
         console.log(result);
-        return res.status(200).json({
+       return res.status(200).json({
+          status: 200,
           data: 'Deletado com sucesso!',
         });
       });
