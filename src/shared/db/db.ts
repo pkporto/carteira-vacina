@@ -11,7 +11,7 @@ export async function connect() {
     return connection;
 }
 
-//dev
+// dev
 // export async function connect() {
 //   const connection = await mysql.createPool({
 //     host: "localhost",

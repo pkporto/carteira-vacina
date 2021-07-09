@@ -4,18 +4,21 @@ import { Router, Request, Response } from "express";
 import { CreateVaccineController } from "../CreateVaccine/CreateVaccineController";
 
 import { GetVaccinesController } from "../GetVaccines/GetVaccinesController";
+import { GetVaccineController } from "../GetVaccine/GetVaccineController";
 import { container } from "tsyringe";
 
-const kidsRoutes = Router();
+const vaccineRoutes = Router();
 
 const createKidController = container.resolve(CreateVaccineController);
 const getKidsController = container.resolve(GetVaccinesController);
-kidsRoutes.get("/", (req: Request, res: Response) => {
+const getVaccineController = container.resolve(GetVaccineController);
+vaccineRoutes.get("/", (req: Request, res: Response) => {
   return res.send("teste");
 });
 
-kidsRoutes.post("/addVaccine", createKidController.handle);
+vaccineRoutes.post("/addVaccine", createKidController.handle);
 
-kidsRoutes.get("/getVaccines", getKidsController.handle);
+vaccineRoutes.get("/getVaccines", getKidsController.handle);
+vaccineRoutes.get("/getVaccine", getVaccineController.handle);
 
-export default kidsRoutes;
+export default vaccineRoutes;

@@ -35,6 +35,19 @@ export const getVaccines = async (callback: Function) =>  {
     })
 }
 
+export const getVaccine = async (id:number ,callback: Function) => {
+  const conn = await connect();
+
+  conn.getConnection(function (err, connection) {
+    if (err) throw err;
+
+    connection.query(`SELECT * FROM vacina where id  = ${id} `, [], (err, result) => {
+      connection.release();
+      if (err) throw err;
+      return callback(null, result);
+    });
+  });
+};
 
 
 
